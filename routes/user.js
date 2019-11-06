@@ -3,7 +3,7 @@ const auth = require('../middlewares/AuthMiddle');
 
 module.exports.setRouter = (app) =>{
 
-    let baseUrl = `/users`;
+    //let baseUrl = `/users`;
 
     /**
      * @apiGroup users
@@ -45,7 +45,7 @@ module.exports.setRouter = (app) =>{
 	   }
     */
 
-    app.post( `${baseUrl}/signup`, userController.signUpFunction);
+    app.post( `/users/signup`, userController.signUpFunction);
 
     /**
      * @apiGroup users
@@ -85,7 +85,7 @@ module.exports.setRouter = (app) =>{
     */
 
 
-    app.post(`${baseUrl}/login`, userController.loginFunction);
+    app.post(`/users/login`, userController.loginFunction);
 
     
 /**
@@ -107,7 +107,7 @@ module.exports.setRouter = (app) =>{
         }
     */
     
-    app.put(`${baseUrl}/reset`, userController.resetPassword);
+    app.put(`/users/reset`, userController.resetPassword);
 
     /**
      * @apiGroup users
@@ -136,7 +136,7 @@ module.exports.setRouter = (app) =>{
 	   }
     */
 
-    app.post(`${baseUrl}/logout/:authToken`, auth.isAuthenticated, userController.logOut);
+    app.post(`/users/logout/:authToken`, auth.isAuthenticated, userController.logOut);
 
       /**
 	 * @api {get} users/view/all Get all users
@@ -171,7 +171,7 @@ module.exports.setRouter = (app) =>{
 	   }
 	 */
 
-    app.get( `${baseUrl}/view/all`, userController.getAllUsers);
+    app.get( `/users/view/all`, userController.getAllUsers);
 
     /**
 	 * @api {get} users/:userId/details Get single user
@@ -206,7 +206,7 @@ module.exports.setRouter = (app) =>{
 	   }
 	 */
 
-    app.get( `${baseUrl}/:userId/details`, userController.getSingleUser);
+    app.get( `/users/:userId/details`, userController.getSingleUser);
 
     /**
 	 * @api {get} users/details/:email Get single user
@@ -241,9 +241,9 @@ module.exports.setRouter = (app) =>{
 	   }
 	 */
 
-    app.get( `${baseUrl}/details/:email`, userController.getSingleUserByEmail);
+    app.get( `/users/details/:email`, userController.getSingleUserByEmail);
 
-    app.put( `${baseUrl}/:userId/edit`,auth.isAuthenticated, userController.editUser);
+    app.put( `/users/:userId/edit`,auth.isAuthenticated, userController.editUser);
 
-    app.post( `${baseUrl}/:userId/delete`,auth.isAuthenticated, userController.deleteUser);
+    app.post( `/users/:userId/delete`,auth.isAuthenticated, userController.deleteUser);
 }
